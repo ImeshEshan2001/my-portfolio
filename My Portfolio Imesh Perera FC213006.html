@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imesh Eshan Perera | Portfolio</title>
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-dark: #0a192f;   /* Deep Navy */
+            --secondary-dark: #112240; /* Lighter Navy for cards */
+            --text-main: #e6f1ff;      /* Off-white for readability */
+            --text-muted: #8892b0;     /* Muted blue-grey */
+            --accent: #64ffda;         /* Teal accent */
+            --white: #ffffff;
+            --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--primary-dark);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: rgba(10, 25, 47, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+            text-decoration: underline;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 10%;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .hero h3 {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            max-width: 600px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        .cta-btn {
+            padding: 15px 30px;
+            border: 2px solid var(--white);
+            color: var(--white);
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            background-color: rgba(255,255,255,0.1);
+            transform: translateY(-3px);
+        }
+
+        /* --- SECTIONS GENERAL --- */
+        section {
+            padding: 100px 10%;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 200px;
+            height: 1px;
+            background-color: rgba(255,255,255,0.2);
+            margin-left: 20px;
+        }
+
+        /* --- ABOUT & SKILLS GRID --- */
+        .about-container {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .skills-list li {
+            position: relative;
+            padding-left: 20px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+
+        .skills-list li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--white);
+        }
+
+        /* --- SERVICES CARDS --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background-color: var(--secondary-dark);
+            padding: 30px;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card h3 {
+            color: var(--white);
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* --- EXPERIENCE TIMELINE --- */
+        .timeline {
+            position: relative;
+            border-left: 2px solid rgba(255,255,255,0.2);
+            margin-left: 10px;
+            padding-left: 30px;
+        }
+
+        .timeline-item {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -37px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background-color: var(--white);
+            border-radius: 50%;
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            color: var(--white);
+            opacity: 0.7;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .timeline-item h4 {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .timeline-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* --- PROJECTS --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background-color: var(--secondary-dark);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px -15px rgba(2,12,27,0.9);
+            z-index: 2;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-content h3 {
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+
+        .project-content p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 10px;
+            font-size: 0.8rem;
+            color: var(--white);
+            opacity: 0.6;
+        }
+
+        /* --- CONTACT (REDESIGNED) --- */
+        .contact-container {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-container h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .contact-container p.intro {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 18px 40px;
+            background-color: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 40px; /* Space before social icons */
+        }
+        
+        .contact-btn:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        /* --- CENTERED SOCIAL ICONS WITH TOOLTIP --- */
+        .social-center {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .social-icon {
+            color: var(--text-muted);
+            transition: 0.3s;
+            position: relative; /* Needed for tooltip positioning */
+            display: flex;
+            align-items: center;
+        }
+
+        .social-icon svg {
+            width: 60px;
+            height: 60px;
+            fill: currentColor;
+            transition: 0.3s;
+        }
+
+        .social-icon:hover {
+            color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        /* Tooltip Styling */
+        .social-icon::after {
+            content: attr(data-tooltip); /* Grabs text from HTML */
+            position: absolute;
+            bottom: -35px; /* Position below icon */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--secondary-dark);
+            color: var(--white);
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            pointer-events: none;
+        }
+
+        /* Show Tooltip on Hover */
+        .social-icon:hover::after {
+            opacity: 1;
+            visibility: visible;
+            bottom: -40px; /* Slight movement effect */
+        }
+
+
+        /* --- CONTACT DETAILS GRID --- */
+        .contact-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1); /* Separator line */
+            padding-top: 40px;
+        }
+
+        .detail-item {
+            background: var(--secondary-dark);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .detail-item h4 {
+            color: var(--white);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .detail-item p, .detail-item a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            display: block;
+        }
+        
+        .detail-item a:hover {
+            color: var(--accent);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* --- MEDIA QUERIES --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero h2 { font-size: 1.5rem; }
+            .about-container { grid-template-columns: 1fr; }
+            nav { padding: 20px; }
+            section { padding: 80px 20px; }
+            .social-center { gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">MUSIX Productions</div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Work</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h3>Hello There , my name is</h3>
+        <h1>IMESH ESHAN PERERA</h1>
+        <h2>I engineer sound and produce music.</h2>
+        <p>I am a freelance sound engineer, session musician, and the founder of Musix Studios. I specialize in vocal mixing, music production, and delivering high-quality audio for weddings, events, and independent artists.</p>
+        <a href="#projects" class="cta-btn">Check out my work</a>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-container">
+            <div class="about-text">
+                <p>
+                    With over six years of hands-on experience, I work across studio production, live sound, and session performance. 
+                    I founded <strong>Musix Studios</strong> in 2019, a professional recording facility in Sri Lanka.
+                </p>
+                <p>
+                    My work covers the full audio process, from recording and vocal production to mixing, mastering, and live sound system setup. 
+                    Alongside engineering, I actively perform as a session and live musician, collaborating closely with music directors to deliver clean, musical results.
+                </p>
+                <p>Here are a few technologies and tools I work with:</p>
+                <ul class="skills-list">
+                    <li>Logic Pro X</li>
+                    <li>Studio Recording</li>
+                    <li>Vocal Mixing</li>
+                    <li>Live Sound Setup</li>
+                    <li>Mastering</li>
+                    <li>Session Performance</li>
+                </ul>
+            </div>
+            <div class="about-img">
+                </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2 class="section-title">What I Do</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Studio Production</h3>
+                <p>Full-service recording, vocal production, mixing, and mastering for solo artists, choirs, and bands.</p>
+            </div>
+            <div class="service-card">
+                <h3>Live Sound</h3>
+                <p>Professional sound system setup and operation for weddings, church masses, corporate functions, and outdoor events.</p>
+            </div>
+            <div class="service-card">
+                <h3>Session Musician</h3>
+                <p>Reliable live and studio performance services, collaborating with bands and music directors.</p>
+            </div>
+            <div class="service-card">
+                <h3>Musix Studios</h3>
+                <p>Owner of a home-based professional facility equipped with soundproofing and high-end gear (Upgraded 2023).</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2 class="section-title">My Journey</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <span class="timeline-date">2023</span>
+                <h4>Studio Expansion</h4>
+                <p>Completed major upgrades to Musix Studios including professional soundproofing and new gear acquisition.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-date">April 2021 - Present</span>
+                <h4>Session Musician</h4>
+                <p>Active collaboration with artists and bands for live performances and studio recordings.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-date">Oct 2020 - Present</span>
+                <h4>Freelance Sound Engineer</h4>
+                <p>Providing independent audio engineering services for various clients and events.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-date">Aug 2019</span>
+                <h4>Founded Musix Studios</h4>
+                <p>Established the brand and facility to provide high-quality audio services.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Some Things I've Built</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>Studio Recordings</h3>
+                    <p>End-to-end production for independent artists and voice-over projects. Focused on clean audio and musical balance.</p>
+                    <div class="tags">
+                        <span>Logic Pro X</span>
+                        <span>Mixing</span>
+                        <span>Mastering</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>Live Event Sound</h3>
+                    <p>Managed sound systems for church weddings and corporate events. Ensured clarity and reliability in dynamic environments.</p>
+                    <div class="tags">
+                        <span>Live Sound</span>
+                        <span>System Setup</span>
+                        <span>Troubleshooting</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>Choir & Band Support</h3>
+                    <p>Collaborative session work and engineering for local choirs and bands, enhancing their live and recorded output.</p>
+                    <div class="tags">
+                        <span>Collaboration</span>
+                        <span>Performance</span>
+                        <span>Audio</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-container">
+            <h3>What's Next?</h3>
+            <h2>Get In Touch</h2>
+            <p class="intro">I am currently accepting new projects for recording, mixing, and live sound events. Whether you have a question or just want to say hi, my inbox is open!</p>
+            
+            <a href="mailto:imesheshan2015@gmail.com" class="contact-btn">Email</a>
+
+            <div class="social-center">
+                <a href="https://github.com/ImeshEshan2001" target="_blank" class="social-icon" data-tooltip="GitHub">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.22.694.825.576C20.566 22.097 24 17.742 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/imesh-perera-3a4973210" target="_blank" class="social-icon" data-tooltip="LinkedIn">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+                <a href="https://www.facebook.com/share/1FQUExHRT8" target="_blank" class="social-icon" data-tooltip="Facebook">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+                <a href="https://www.facebook.com/share/1FQUExHRT8" target="_blank" class="social-icon" data-tooltip="Instagram">
+                   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.315 1.335 20.646.924 19.857.63 19.092.333 18.222.131 16.945.072 15.667.012 15.26 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                </a>
+            </div>
+
+            <div class="contact-details">
+                <div class="detail-item">
+                    <h4>Phone / WhatsApp</h4>
+                    <a href="tel:0764752559">0764752559</a>
+                </div>
+                
+                <div class="detail-item">
+                    <h4>Studio Address</h4>
+                    <p>No 26/3 De Mazenod College Road,<br>Kandana</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Imesh Eshan Perera | Musix Studios</p>
+    </footer>
+
+</body>
+</html>
