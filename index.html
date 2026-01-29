@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Imesh Eshan Perera | Portfolio</title>
+    <title><title>Portfolio - Imesh Perera (FC213006)</title></title>
     <style>
-        /* --- CSS VARIABLES & RESET --- */
         :root {
-            --primary-dark: #0a192f;   /* Deep Navy */
-            --secondary-dark: #112240; /* Lighter Navy for cards */
-            --text-main: #e6f1ff;      /* Off-white for readability */
-            --text-muted: #8892b0;     /* Muted blue-grey */
-            --accent: #64ffda;         /* Teal accent */
+            --primary-dark: #0a192f;   
+            --secondary-dark: #112240; 
+            --text-main: #e6f1ff;      
+            --text-muted: #8892b0;     
+            --accent: #64ffda;         
             --white: #ffffff;
             --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
@@ -41,7 +40,7 @@
             list-style: none;
         }
 
-        /* --- NAVIGATION --- */
+       
         nav {
             display: flex;
             justify-content: space-between;
@@ -78,7 +77,7 @@
             text-decoration: underline;
         }
 
-        /* --- HERO SECTION --- */
+       
         .hero {
             height: 100vh;
             display: flex;
@@ -131,7 +130,7 @@
             transform: translateY(-3px);
         }
 
-        /* --- SECTIONS GENERAL --- */
+   
         section {
             padding: 100px 10%;
         }
@@ -153,7 +152,7 @@
             margin-left: 20px;
         }
 
-        /* --- ABOUT & SKILLS GRID --- */
+       
         .about-container {
             display: grid;
             grid-template-columns: 3fr 2fr;
@@ -187,7 +186,7 @@
             color: var(--white);
         }
 
-        /* --- SERVICES CARDS --- */
+      
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -216,7 +215,6 @@
             font-size: 0.9rem;
         }
 
-        /* --- EXPERIENCE TIMELINE --- */
         .timeline {
             position: relative;
             border-left: 2px solid rgba(255,255,255,0.2);
@@ -259,7 +257,6 @@
             font-size: 0.95rem;
         }
 
-        /* --- PROJECTS --- */
         .project-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -303,7 +300,6 @@
             opacity: 0.6;
         }
 
-        /* --- CONTACT (REDESIGNED) --- */
         .contact-container {
             text-align: center;
             max-width: 800px;
@@ -333,14 +329,13 @@
             border-radius: 5px;
             font-size: 1rem;
             font-weight: 600;
-            margin-bottom: 40px; /* Space before social icons */
+            margin-bottom: 40px; 
         }
         
         .contact-btn:hover {
             background-color: rgba(255,255,255,0.1);
         }
 
-        /* --- CENTERED SOCIAL ICONS WITH TOOLTIP --- */
         .social-center {
             display: flex;
             justify-content: center;
@@ -352,7 +347,7 @@
         .social-icon {
             color: var(--text-muted);
             transition: 0.3s;
-            position: relative; /* Needed for tooltip positioning */
+            position: relative; 
             display: flex;
             align-items: center;
         }
@@ -369,11 +364,11 @@
             transform: translateY(-5px);
         }
 
-        /* Tooltip Styling */
+   
         .social-icon::after {
-            content: attr(data-tooltip); /* Grabs text from HTML */
+            content: attr(data-tooltip); 
             position: absolute;
-            bottom: -35px; /* Position below icon */
+            bottom: -35px; 
             left: 50%;
             transform: translateX(-50%);
             background-color: var(--secondary-dark);
@@ -389,22 +384,20 @@
             pointer-events: none;
         }
 
-        /* Show Tooltip on Hover */
+        
         .social-icon:hover::after {
             opacity: 1;
             visibility: visible;
-            bottom: -40px; /* Slight movement effect */
+            bottom: -40px; 
         }
 
-
-        /* --- CONTACT DETAILS GRID --- */
         .contact-details {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 30px;
             margin-top: 20px;
             text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.1); /* Separator line */
+            border-top: 1px solid rgba(255,255,255,0.1); 
             padding-top: 40px;
         }
 
@@ -430,7 +423,6 @@
             color: var(--accent);
         }
 
-        /* --- FOOTER --- */
         footer {
             text-align: center;
             padding: 30px;
@@ -438,7 +430,6 @@
             font-size: 0.8rem;
         }
 
-        /* --- MEDIA QUERIES --- */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
             .hero h2 { font-size: 1.5rem; }
